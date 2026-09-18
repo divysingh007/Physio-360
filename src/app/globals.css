@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #0F766E;
+    --primary-dark: #115E59;
+    --primary-light: #14B8A6;
+    --primary-surface: #F0FDFA;
+    --secondary: #14B8A6;
+    --accent: #2563EB;
+    --accent-hover: #1D4ED8;
+    --background: #F8FAFC;
+    --card: #FFFFFF;
+    --foreground: #0F172A;
+    --muted: #64748B;
+    --border: #E2E8F0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom soft utility classes for healthcare styling */
+.medical-shadow {
+  box-shadow: 0 4px 20px -2px rgba(15, 118, 110, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+}
+
+.medical-shadow-hover {
+  box-shadow: 0 10px 25px -3px rgba(15, 118, 110, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+}
+
+.card-subtle {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 1rem;
+}
+
+/* Pulse animation for live appointment status indicator */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 3s infinite ease-in-out;
+}
