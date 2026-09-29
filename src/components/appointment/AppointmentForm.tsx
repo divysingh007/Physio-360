@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { servicesData } from "@/data/services";
 import { clinicData } from "@/data/clinic";
+import { doctorsData } from "@/data/doctors";
 import { Button } from "@/components/ui/Button";
 import {
   Calendar,
@@ -14,15 +15,17 @@ import {
   CheckCircle2,
   AlertCircle,
   Sparkles,
+  Stethoscope,
 } from "lucide-react";
 
 interface AppointmentFormData {
   fullName: string;
   phone: string;
   email: string;
+  department: string;
+  doctor: string;
   preferredDate: string;
   preferredTime: string;
-  treatmentConcern: string;
   message: string;
 }
 
@@ -31,9 +34,10 @@ export function AppointmentForm() {
     fullName: "",
     phone: "",
     email: "",
+    department: servicesData[0].title,
+    doctor: doctorsData[0].name,
     preferredDate: "",
     preferredTime: "Morning (10:00 AM - 1:00 PM)",
-    treatmentConcern: servicesData[0].title,
     message: "",
   });
 
@@ -61,7 +65,6 @@ export function AppointmentForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation
     if (!formData.fullName.trim() || !formData.phone.trim() || !formData.preferredDate) {
       setErrorMsg("Please fill in your name, contact phone number, and preferred date.");
       return;
@@ -70,13 +73,12 @@ export function AppointmentForm() {
     setIsSubmitting(true);
     setErrorMsg("");
 
-    // Simulate mock client-side booking submission
     setTimeout(() => {
-      const generatedRef = "PHY-" + Math.floor(100000 + Math.random() * 900000);
+      const generatedRef = "SAM-" + Math.floor(100000 + Math.random() * 900000);
       setReferenceId(generatedRef);
       setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 650);
+    }, 600);
   };
 
   const handleReset = () => {
@@ -84,9 +86,10 @@ export function AppointmentForm() {
       fullName: "",
       phone: "",
       email: "",
+      department: servicesData[0].title,
+      doctor: doctorsData[0].name,
       preferredDate: "",
       preferredTime: "Morning (10:00 AM - 1:00 PM)",
-      treatmentConcern: servicesData[0].title,
       message: "",
     });
     setIsSubmitted(false);
@@ -95,61 +98,60 @@ export function AppointmentForm() {
 
   if (isSubmitted) {
     return (
-      <div className="bg-white rounded-2xl border border-teal-200/80 p-8 sm:p-10 shadow-lg text-center animate-in zoom-in-95 duration-300 max-w-xl mx-auto">
-        <div className="w-16 h-16 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center mx-auto mb-5 shadow-xs">
-          <CheckCircle2 className="w-9 h-9 text-teal-700" />
+      <div className="bg-white rounded-3xl border border-blue-200/80 p-8 sm:p-10 shadow-xl text-center animate-in zoom-in-95 duration-300 max-w-xl mx-auto">
+        <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-5 shadow-sm">
+          <CheckCircle2 className="w-9 h-9 text-emerald-600" />
         </div>
 
-        <span className="inline-block px-3 py-1 bg-teal-50 text-teal-800 rounded-full text-xs font-semibold tracking-wider uppercase mb-3 border border-teal-200">
-          Booking Request Received
+        <span className="inline-block px-3 py-1 bg-blue-50 text-blue-800 rounded-full text-xs font-bold tracking-wider uppercase mb-3 border border-blue-200">
+          Request Received
         </span>
 
-        <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
-          Thank you! Your appointment request has been received.
+        <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">
+          Thank you! Your appointment request is logged.
         </h3>
 
         <p className="text-slate-600 text-sm leading-relaxed mb-6">
-          Our clinic coordinator will review Dr. Sonali Baghel&apos;s schedule and reach out to you via call or WhatsApp at <strong className="text-slate-800">{formData.phone}</strong> to confirm your exact appointment slot.
+          Our hospital coordinator will review doctor availability and reach out to you via call or WhatsApp at <strong className="text-slate-900">{formData.phone}</strong> to confirm your exact time slot.
         </p>
 
-        <div className="bg-slate-50 rounded-xl p-4 text-left border border-slate-200 text-xs space-y-2 mb-6">
+        <div className="bg-slate-50 rounded-2xl p-4 text-left border border-slate-200 text-xs space-y-2 mb-6">
           <div className="flex justify-between border-b border-slate-200 pb-2">
-            <span className="text-slate-500">Reference ID:</span>
-            <span className="font-mono font-bold text-teal-700">{referenceId}</span>
+            <span className="text-slate-500">Booking Reference:</span>
+            <span className="font-mono font-bold text-blue-700">{referenceId}</span>
           </div>
           <div className="flex justify-between border-b border-slate-200 pb-2">
-            <span className="text-slate-500">Patient Name:</span>
+            <span className="text-slate-500">Patient:</span>
             <span className="font-medium text-slate-800">{formData.fullName}</span>
           </div>
           <div className="flex justify-between border-b border-slate-200 pb-2">
-            <span className="text-slate-500">Requested Date & Slot:</span>
-            <span className="font-medium text-slate-800">{formData.preferredDate} ({formData.preferredTime.split(" ")[0]})</span>
+            <span className="text-slate-500">Department / Doctor:</span>
+            <span className="font-medium text-slate-800">{formData.department} ({formData.doctor})</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-slate-500">Concern / Service:</span>
-            <span className="font-medium text-slate-800">{formData.treatmentConcern}</span>
+            <span className="text-slate-500">Hospital Helpline:</span>
+            <span className="font-bold text-blue-600">{clinicData.phone}</span>
           </div>
-        </div>
-
-        <div className="p-3.5 bg-amber-50 rounded-xl border border-amber-200/80 text-amber-900 text-xs text-left mb-6">
-          <p className="font-medium mb-1">Appointment Confirmation Notice:</p>
-          <p className="text-amber-800">
-            Appointment requests are subject to clinic confirmation. For urgent evaluations or same-day inquiries, please contact us directly.
-          </p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
-            href={`https://wa.me/${clinicData.whatsappRaw}?text=${encodeURIComponent(`Hi, I submitted an appointment request with Ref ID: ${referenceId}`)}`}
+            href={`https://wa.me/${clinicData.whatsappRaw}?text=${encodeURIComponent(
+              `Hello Samriddhi Hospital, I submitted an appointment request with Ref ID: ${referenceId}`
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-[#25D366] text-white font-medium text-sm hover:bg-[#20bd5a] transition-colors"
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#25D366] text-white font-bold text-sm hover:bg-[#20bd5a] transition-colors"
           >
-            Notify via WhatsApp
+            Confirm on WhatsApp
           </a>
-          <Button variant="outline" size="md" onClick={handleReset}>
+          <button
+            type="button"
+            onClick={handleReset}
+            className="px-5 py-2.5 rounded-full border border-slate-300 bg-white text-slate-700 text-sm font-semibold hover:bg-slate-50"
+          >
             Submit Another Request
-          </Button>
+          </button>
         </div>
       </div>
     );
@@ -158,21 +160,21 @@ export function AppointmentForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white rounded-2xl border border-slate-200 shadow-md p-6 sm:p-8 md:p-10"
+      className="bg-white rounded-3xl border border-slate-200 shadow-xl p-6 sm:p-8 md:p-10"
       noValidate
     >
       <div className="flex items-center justify-between pb-6 mb-6 border-b border-slate-100">
         <div>
           <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-            Book Your Physiotherapy Appointment
+            Book Hospital Appointment
           </h3>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            Personalized one-to-one consultation with Dr. Sonali Baghel, PT
+            Consult specialist doctors at Samriddhi Hospital &bull; Call: {clinicData.emergencyNumber}
           </p>
         </div>
-        <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 text-xs font-semibold border border-teal-200">
-          <Sparkles className="w-3.5 h-3.5 text-teal-600" />
-          <span>Quick Request</span>
+        <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200">
+          <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+          <span>Priority Triage</span>
         </div>
       </div>
 
@@ -190,7 +192,7 @@ export function AppointmentForm() {
             htmlFor="fullName"
             className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5"
           >
-            Full Name <span className="text-rose-500">*</span>
+            Patient Full Name <span className="text-rose-500">*</span>
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -203,8 +205,8 @@ export function AppointmentForm() {
               required
               value={formData.fullName}
               onChange={handleChange}
-              placeholder="e.g. Anjali Sharma"
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 text-sm text-slate-900 transition-all outline-none"
+              placeholder="e.g. Rahul Sharma"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-sm text-slate-900 outline-none"
             />
           </div>
         </div>
@@ -215,7 +217,7 @@ export function AppointmentForm() {
             htmlFor="phone"
             className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5"
           >
-            Phone Number <span className="text-rose-500">*</span>
+            Contact Number <span className="text-rose-500">*</span>
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -228,66 +230,60 @@ export function AppointmentForm() {
               required
               value={formData.phone}
               onChange={handleChange}
-              placeholder="e.g. +91 98765 43210"
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 text-sm text-slate-900 transition-all outline-none"
+              placeholder="e.g. 9305257103"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-sm text-slate-900 outline-none"
             />
           </div>
         </div>
 
-        {/* Email Address */}
+        {/* Department */}
         <div>
           <label
-            htmlFor="email"
+            htmlFor="department"
             className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5"
           >
-            Email Address (Optional)
+            Medical Department <span className="text-rose-500">*</span>
           </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-              <Mail className="w-4 h-4" />
-            </div>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="e.g. patient@example.com"
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 text-sm text-slate-900 transition-all outline-none"
-            />
-          </div>
-        </div>
-
-        {/* Treatment / Concern */}
-        <div>
-          <label
-            htmlFor="treatmentConcern"
-            className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5"
+          <select
+            id="department"
+            name="department"
+            value={formData.department}
+            onChange={handleChange}
+            className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-sm text-slate-900 bg-white outline-none"
           >
-            Treatment / Concern <span className="text-rose-500">*</span>
-          </label>
-          <div className="relative">
-            <select
-              id="treatmentConcern"
-              name="treatmentConcern"
-              value={formData.treatmentConcern}
-              onChange={handleChange}
-              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 text-sm text-slate-900 bg-white transition-all outline-none"
-            >
-              {servicesData.map((svc) => (
-                <option key={svc.id} value={svc.title}>
-                  {svc.title}
-                </option>
-              ))}
-              <option value="General Consultation & Assessment">
-                General Consultation & Assessment
+            {servicesData.map((svc) => (
+              <option key={svc.id} value={svc.title}>
+                {svc.title}
               </option>
-              <option value="Other Condition">Other Condition / Inquiry</option>
-            </select>
-          </div>
+            ))}
+          </select>
         </div>
 
-        {/* Preferred Date */}
+        {/* Doctor */}
+        <div>
+          <label
+            htmlFor="doctor"
+            className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5"
+          >
+            Select Specialist Doctor
+          </label>
+          <select
+            id="doctor"
+            name="doctor"
+            value={formData.doctor}
+            onChange={handleChange}
+            className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-sm text-slate-900 bg-white outline-none"
+          >
+            {doctorsData.map((doc) => (
+              <option key={doc.id} value={doc.name}>
+                {doc.name} - {doc.role}
+              </option>
+            ))}
+            <option value="Any Available Specialist">Any Available Specialist</option>
+          </select>
+        </div>
+
+        {/* Date */}
         <div>
           <label
             htmlFor="preferredDate"
@@ -306,12 +302,12 @@ export function AppointmentForm() {
               required
               value={formData.preferredDate}
               onChange={handleChange}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 text-sm text-slate-900 transition-all outline-none"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-sm text-slate-900 outline-none"
             />
           </div>
         </div>
 
-        {/* Preferred Time Slot */}
+        {/* Time Slot */}
         <div>
           <label
             htmlFor="preferredTime"
@@ -328,7 +324,7 @@ export function AppointmentForm() {
               name="preferredTime"
               value={formData.preferredTime}
               onChange={handleChange}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 text-sm text-slate-900 bg-white transition-all outline-none"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-sm text-slate-900 bg-white outline-none"
             >
               {timeSlots.map((slot) => (
                 <option key={slot} value={slot}>
@@ -340,50 +336,36 @@ export function AppointmentForm() {
         </div>
       </div>
 
-      {/* Message / Symptoms Notes */}
+      {/* Message */}
       <div className="mb-6">
         <label
           htmlFor="message"
           className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5"
         >
-          Symptoms / Notes (Optional)
+          Symptoms / Clinical History (Optional)
         </label>
-        <div className="relative">
-          <div className="absolute top-3 left-3.5 text-slate-400 pointer-events-none">
-            <FileText className="w-4 h-4" />
-          </div>
-          <textarea
-            id="message"
-            name="message"
-            rows={3}
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Briefly describe your pain, duration, or any specific mobility limitations..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 text-sm text-slate-900 transition-all outline-none resize-none"
-          />
-        </div>
-      </div>
-
-      {/* Disclaimer */}
-      <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 mb-6 text-xs text-slate-500 leading-relaxed">
-        <p>
-          <strong className="text-slate-700">Notice:</strong> Appointment requests are subject to clinic confirmation. Information on this website is for general informational purposes and does not replace professional medical advice.
-        </p>
+        <textarea
+          id="message"
+          name="message"
+          rows={3}
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Briefly describe symptoms, emergency concerns, or past medical reports..."
+          className="w-full p-3.5 rounded-xl border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-sm text-slate-900 outline-none resize-none"
+        />
       </div>
 
       {/* Submit Button */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <Button
+        <button
           type="submit"
-          variant="primary"
-          size="lg"
           disabled={isSubmitting}
-          className="w-full sm:w-auto px-8"
+          className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-500/20 active:scale-95 transition-all"
         >
-          {isSubmitting ? "Submitting Request..." : "Request Appointment"}
-        </Button>
-        <span className="text-xs text-slate-400 text-center sm:text-right">
-          No advance payment required.
+          {isSubmitting ? "Submitting..." : "Confirm Appointment Request"}
+        </button>
+        <span className="text-xs text-slate-400">
+          24/7 Emergency Line: <strong className="text-slate-700">{clinicData.emergencyNumber}</strong>
         </span>
       </div>
     </form>

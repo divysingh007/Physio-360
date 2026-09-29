@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0F766E",
+  themeColor: "#2563EB",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -26,45 +26,47 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "PHYSIO 360 CARE - Dr. Sonali Baghel PT | Physiotherapy in Allahabad",
-    template: "%s | PHYSIO 360 CARE",
+    default: "Samriddhi Hospital - Multispeciality Care & 24/7 Emergency | Call 9305257103",
+    template: "%s | Samriddhi Hospital",
   },
   description:
-    "PHYSIO 360 CARE by Dr. Sonali Baghel, PT, provides personalized physiotherapy and rehabilitation care in Allahabad, Uttar Pradesh.",
+    "Samriddhi Hospital in Prayagraj provides 24/7 emergency care, cardiology, orthopedics, maternity, pediatrics, general surgery, modern ICU, and diagnostics. Call 9305257103.",
   keywords: [
-    "Physiotherapy Allahabad",
-    "Physiotherapist Prayagraj",
-    "Dr Sonali Baghel PT",
-    "PHYSIO 360 CARE",
-    "Back pain treatment Allahabad",
-    "Sports injury rehabilitation Allahabad",
-    "Orthopedic physical therapy Prayagraj",
-    "Neck pain physiotherapy",
+    "Samriddhi Hospital",
+    "Samriddhi Hospital Prayagraj",
+    "Hospital in Prayagraj",
+    "Hospital in Allahabad",
+    "Emergency hospital Prayagraj",
+    "Cardiologist in Allahabad",
+    "Orthopedic hospital Prayagraj",
+    "Maternity hospital Allahabad",
+    "ICU hospital Prayagraj",
+    "9305257103",
   ],
-  authors: [{ name: clinicData.doctorName }],
+  authors: [{ name: "Samriddhi Hospital Medical Board" }],
   creator: clinicData.clinicName,
   publisher: clinicData.clinicName,
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://physio360care.com",
-    title: "PHYSIO 360 CARE - Dr. Sonali Baghel PT | Physiotherapy in Allahabad",
+    url: "https://samriddhihospital.com",
+    title: "Samriddhi Hospital - Multispeciality Care & 24/7 Emergency",
     description:
-      "Personalized physiotherapy and rehabilitation care by Dr. Sonali Baghel, PT in Allahabad, Uttar Pradesh. Move Better. Feel Stronger. Live Pain-Free.",
-    siteName: "PHYSIO 360 CARE",
+      "Your health is our priority. World-class medical excellence with compassionate doctors and 24/7 emergency response at Samriddhi Hospital. Call 9305257103.",
+    siteName: "Samriddhi Hospital",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PHYSIO 360 CARE - Dr. Sonali Baghel PT | Physiotherapy in Allahabad",
+    title: "Samriddhi Hospital - Multispeciality Care & 24/7 Emergency",
     description:
-      "Personalized physiotherapy and rehabilitation care by Dr. Sonali Baghel, PT in Allahabad, Uttar Pradesh.",
+      "Compassionate healthcare, expert medical specialists, and 24/7 emergency hospital services in Prayagraj. Call 9305257103.",
   },
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
-    canonical: "https://physio360care.com",
+    canonical: "https://samriddhihospital.com",
   },
 };
 
@@ -81,7 +83,7 @@ export default function RootLayout({
       <head>
         <StructuredData />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] antialiased selection:bg-teal-100 selection:text-teal-900">
+      <body className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] antialiased selection:bg-blue-100 selection:text-blue-900">
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />

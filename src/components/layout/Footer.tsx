@@ -2,147 +2,126 @@ import React from "react";
 import Link from "next/link";
 import { clinicData } from "@/data/clinic";
 import {
-  Activity,
   Phone,
   MessageCircle,
   MapPin,
   Calendar,
   Navigation,
   ExternalLink,
+  Plus,
+  ShieldAlert,
+  Clock,
 } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+    <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-12">
-          {/* Brand & Doctor Info */}
+          {/* Brand & Hospital Overview */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold">
-                <Activity className="w-5 h-5 text-teal-200" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-500 to-blue-600 text-white flex items-center justify-center font-bold shadow-md">
+                <Plus className="w-6 h-6 stroke-[3] text-white" />
               </div>
               <div>
                 <span className="font-extrabold text-xl tracking-tight text-white block">
                   {clinicData.clinicName}
                 </span>
-                <span className="text-xs font-medium text-teal-400">
+                <span className="text-xs font-semibold text-teal-400">
                   {clinicData.tagline}
                 </span>
               </div>
             </div>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              Led by <strong className="text-slate-200">{clinicData.doctorName}</strong>, our clinic provides individualized physiotherapy and progressive rehabilitation in Allahabad, focused on long-term mobility and pain-free living.
+              Samriddhi Hospital is committed to delivering advanced, compassionate, and round-the-clock multispeciality medical care. Our certified doctors, high-tech ICU, and modern emergency department ensure your family is always in safe hands.
             </p>
 
-            {/* Social Icons with inline crisp SVGs */}
-            <div className="flex items-center gap-3 pt-2">
-              <a
-                href={clinicData.socialLinks.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-teal-700 transition-colors"
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
-              </a>
-              <a
-                href={clinicData.socialLinks.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-teal-700 transition-colors"
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </a>
-              <a
-                href={clinicData.socialLinks.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-teal-700 transition-colors"
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-                  <path d="m10 15 5-3-5-3z" />
-                </svg>
-              </a>
+            <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex items-center gap-3 max-w-sm">
+              <div className="w-9 h-9 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0">
+                <ShieldAlert className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-white uppercase tracking-wider">
+                  24/7 Emergency Helpline
+                </p>
+                <a
+                  href={`tel:${clinicData.phoneRaw}`}
+                  className="text-base font-extrabold text-rose-400 hover:text-rose-300 transition-colors"
+                >
+                  {clinicData.phone}
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Quick Navigation */}
+          {/* Key Hospital Departments */}
           <div>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Explore
+              Specialties
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/" className="hover:text-teal-400 transition-colors">
-                  Home
+                <Link href="/#services" className="hover:text-blue-400 transition-colors">
+                  24/7 Emergency &amp; Trauma
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-teal-400 transition-colors">
-                  About Clinic
+                <Link href="/#services" className="hover:text-blue-400 transition-colors">
+                  Cardiology &amp; Heart Care
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-teal-400 transition-colors">
-                  Physiotherapy Services
+                <Link href="/#services" className="hover:text-blue-400 transition-colors">
+                  Orthopedics &amp; Joint Surgery
                 </Link>
               </li>
               <li>
-                <Link href="/#why-us" className="hover:text-teal-400 transition-colors">
-                  Why Choose Us
+                <Link href="/#services" className="hover:text-blue-400 transition-colors">
+                  Obstetrics &amp; Gynecology
                 </Link>
               </li>
               <li>
-                <Link href="/#reviews" className="hover:text-teal-400 transition-colors">
-                  Patient Reviews
+                <Link href="/#services" className="hover:text-blue-400 transition-colors">
+                  Pediatrics &amp; Neonatology
                 </Link>
               </li>
               <li>
-                <Link href="/gallery" className="hover:text-teal-400 transition-colors">
-                  Clinic Gallery
+                <Link href="/#services" className="hover:text-blue-400 transition-colors">
+                  General &amp; Laparoscopic Surgery
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-teal-400 transition-colors">
-                  Contact & Location
+                <Link href="/#services" className="hover:text-blue-400 transition-colors">
+                  ICU &amp; Critical Care
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Direct Patient Actions */}
+          {/* Quick Actions & Consultations */}
           <div>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Quick Actions
+              Patient Care
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link
-                  href="/appointment"
-                  className="inline-flex items-center gap-2 hover:text-teal-400 transition-colors"
+                  href="/#appointment"
+                  className="inline-flex items-center gap-2 hover:text-blue-400 transition-colors"
                 >
-                  <Calendar className="w-4 h-4 text-teal-400" />
+                  <Calendar className="w-4 h-4 text-blue-400" />
                   <span>Book Appointment</span>
                 </Link>
               </li>
               <li>
                 <a
                   href={`tel:${clinicData.phoneRaw}`}
-                  className="inline-flex items-center gap-2 hover:text-teal-400 transition-colors"
+                  className="inline-flex items-center gap-2 hover:text-blue-400 transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-teal-400" />
-                  <span>Call: {clinicData.phone}</span>
+                  <Phone className="w-4 h-4 text-rose-400" />
+                  <span>Call Emergency: {clinicData.phone}</span>
                 </a>
               </li>
               <li>
@@ -153,45 +132,52 @@ export function Footer() {
                   className="inline-flex items-center gap-2 hover:text-[#25D366] transition-colors"
                 >
                   <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                  <span>WhatsApp Chat</span>
+                  <span>WhatsApp Helpdesk</span>
                 </a>
               </li>
               <li>
-                <a
-                  href={clinicData.directionsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 hover:text-teal-400 transition-colors"
+                <Link
+                  href="/#doctors"
+                  className="inline-flex items-center gap-2 hover:text-blue-400 transition-colors"
                 >
-                  <Navigation className="w-4 h-4 text-teal-400" />
-                  <span>Get Directions</span>
-                </a>
+                  <span>Our Specialist Doctors</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#reviews"
+                  className="inline-flex items-center gap-2 hover:text-blue-400 transition-colors"
+                >
+                  <span>Patient Testimonials</span>
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Location & Contact Summary */}
+          {/* Campus Location */}
           <div>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Clinic Location
+              Hospital Campus
             </h4>
             <div className="space-y-3 text-sm text-slate-400">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
                 <span>{clinicData.fullLocation}</span>
               </div>
-              <p className="text-xs text-slate-400 border-t border-slate-800 pt-3">
-                {clinicData.operatingHoursNote}
-              </p>
-              <div className="pt-1">
+              <div className="flex items-start gap-2.5 text-xs text-slate-400 pt-2 border-t border-slate-800">
+                <Clock className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
+                <span>{clinicData.operatingHoursNote}</span>
+              </div>
+              <div className="pt-2">
                 <a
                   href={clinicData.mapsSearchUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-teal-400 hover:text-teal-300"
+                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 font-semibold"
                 >
-                  <span>Open in Google Maps</span>
-                  <ExternalLink className="w-3 h-3" />
+                  <Navigation className="w-3.5 h-3.5" />
+                  <span>Get Driving Directions</span>
+                  <ExternalLink className="w-3 h-3 ml-0.5" />
                 </a>
               </div>
             </div>
@@ -201,16 +187,16 @@ export function Footer() {
         {/* Disclaimer Notice */}
         <div className="pt-8 border-t border-slate-800 text-xs text-slate-400 leading-relaxed max-w-4xl mx-auto text-center">
           <p>
-            <strong className="text-slate-300">Medical Disclaimer:</strong> {clinicData.medicalDisclaimer}
+            <strong className="text-slate-300">Medical Notice:</strong> {clinicData.medicalDisclaimer}
           </p>
         </div>
 
-        {/* Copyright & Demo watermark */}
-        <div className="mt-8 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
-          <p>© 2026 {clinicData.clinicName}. All rights reserved.</p>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/90 text-slate-400 font-medium">
-            <span className="w-2 h-2 rounded-full bg-teal-400"></span>
-            <span>Professional Clinic Website Demo</span>
+        {/* Copyright */}
+        <div className="mt-8 pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+          <p>&copy; {new Date().getFullYear()} {clinicData.clinicName}. All rights reserved.</p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-slate-400 font-medium">
+            <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>24/7 Multi-Speciality Medical Care</span>
           </div>
         </div>
       </div>

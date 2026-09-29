@@ -13,6 +13,7 @@ export interface ClinicConfig {
   whatsapp: string;
   whatsappRaw: string;
   email: string;
+  emergencyNumber: string;
   rating: number;
   reviewCount: number;
   ratingSource: string;
@@ -31,31 +32,32 @@ export interface ClinicConfig {
 }
 
 export const clinicData: ClinicConfig = {
-  clinicName: "PHYSIO 360 CARE",
-  tagline: "Physiotherapy & Rehabilitation",
-  doctorName: "Dr. Sonali Baghel, PT",
-  doctorRole: "Physiotherapist",
-  designation: "Consultant Physiotherapist",
-  city: "Allahabad (Prayagraj)",
+  clinicName: "Samriddhi Hospital",
+  tagline: "Multispeciality Hospital & 24/7 Emergency Care",
+  doctorName: "Dr. Aryan Sharma & Senior Consultants",
+  doctorRole: "Chief Medical Director & Specialists",
+  designation: "Multispeciality Medical Board",
+  city: "Prayagraj",
   state: "Uttar Pradesh",
   country: "India",
-  fullLocation: "Allahabad, Uttar Pradesh, India",
-  phone: "+91 XXXXX XXXXX",
-  phoneRaw: "+910000000000",
-  whatsapp: "+91 XXXXX XXXXX",
-  whatsappRaw: "910000000000",
-  email: "contact@physio360care.com",
+  fullLocation: "Samriddhi Hospital, Medical Enclave, Civil Lines, Prayagraj, UP 211001",
+  phone: "+91 93052 57103",
+  phoneRaw: "+919305257103",
+  whatsapp: "+91 93052 57103",
+  whatsappRaw: "919305257103",
+  email: "care@samriddhihospital.com",
+  emergencyNumber: "9305257103",
   rating: 4.9,
-  reviewCount: 19,
+  reviewCount: 380,
   ratingSource: "Google Reviews",
-  addressSummary: "Allahabad, Uttar Pradesh, India",
+  addressSummary: "Civil Lines, Prayagraj, Uttar Pradesh",
   latitude: 25.4358,
   longitude: 81.8463,
-  directionsUrl: "https://www.google.com/maps/search/?api=1&query=Physiotherapy+Clinic+Allahabad+Uttar+Pradesh",
-  mapsSearchUrl: "https://www.google.com/maps/search/?api=1&query=Physiotherapy+Clinic+Allahabad+Uttar+Pradesh",
-  operatingHoursNote: "Please contact the clinic for current consultation timings and scheduled appointment hours.",
+  directionsUrl: "https://www.google.com/maps/search/?api=1&query=Samriddhi+Hospital+Civil+Lines+Prayagraj",
+  mapsSearchUrl: "https://www.google.com/maps/search/?api=1&query=Samriddhi+Hospital+Civil+Lines+Prayagraj",
+  operatingHoursNote: "24/7 Emergency, Trauma, ICU & Pharmacy. OPD Consultations: Mon - Sat: 9:00 AM - 8:00 PM.",
   medicalDisclaimer:
-    "Information on this website is for general informational and educational purposes only and does not replace professional medical advice, clinical diagnosis, or individualized treatment. Always consult Dr. Sonali Baghel, PT or a qualified healthcare specialist for evaluation.",
+    "Information on this website is for general informational and medical awareness purposes only and does not replace professional clinical evaluation or emergency medical services. In critical emergencies, please dial our 24/7 emergency helpline 9305257103 or visit our emergency department immediately.",
   socialLinks: {
     instagram: "https://instagram.com",
     facebook: "https://facebook.com",

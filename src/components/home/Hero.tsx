@@ -1,199 +1,207 @@
 import React from "react";
 import Link from "next/link";
 import { clinicData } from "@/data/clinic";
-import { Button } from "@/components/ui/Button";
 import {
   Calendar,
   Phone,
-  Navigation,
-  Star,
+  ArrowRight,
+  Plus,
   ShieldCheck,
-  HeartHandshake,
-  CheckCircle2,
+  HeartPulse,
   Sparkles,
+  Clock,
+  UserCheck,
 } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-8 pb-14 sm:py-16 lg:py-24 bg-gradient-to-b from-teal-50/40 via-white to-slate-50">
-      {/* Soft ambient background circles */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-teal-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute -top-24 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
+    <section className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24 bg-gradient-to-br from-slate-50 via-white to-blue-50/40">
+      {/* Soft atmospheric gradient orbs */}
+      <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-gradient-to-bl from-blue-100/50 via-teal-50/40 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/3 -left-32 w-[450px] h-[450px] bg-emerald-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Heading, Subtext, CTAs */}
-          <div className="lg:col-span-7 space-y-6 text-left">
-            {/* Small Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-100/80 border border-teal-200/80 text-teal-800 text-xs font-semibold tracking-wide">
-              <ShieldCheck className="w-4 h-4 text-teal-700" />
-              <span>Trusted Physiotherapy &amp; Rehabilitation Care</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          {/* Left Column: Heading, Subtext, CTAs matching Image 1 */}
+          <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-left">
+            {/* Top Accent Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200/80 text-teal-800 text-xs font-semibold tracking-wide">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Samriddhi Hospital &bull; 24/7 Multi-Speciality Care</span>
             </div>
 
-            {/* Main Heading */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-              Move Better.{" "}
-              <span className="text-[#0F766E]">Feel Stronger.</span>{" "}
-              Live Pain-Free.
-            </h1>
+            {/* Main Headline matching Image 1 */}
+            <div className="space-y-3">
+              <div className="w-12 h-1.5 bg-emerald-500/80 rounded-full mb-3" />
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+                Your health is <br />
+                <span className="text-blue-600">our priority</span>
+              </h1>
+            </div>
 
-            {/* Supporting Text */}
+            {/* Subtext */}
             <p className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed font-normal max-w-2xl">
-              Personalized physiotherapy and rehabilitation care by{" "}
-              <strong className="text-slate-800 font-semibold">
-                {clinicData.doctorName}
-              </strong>
-              , focused on helping you recover, regain mobility and return to the activities you love in Allahabad.
+              Welcome to <strong>{clinicData.clinicName}</strong>. Providing comprehensive medical excellence with compassionate care, leading multi-speciality doctors, advanced modular ICU, and round-the-clock emergency response in Prayagraj.
             </p>
 
-            {/* CTAs */}
+            {/* CTA Buttons matching Image 1 pill design */}
             <div className="pt-2 flex flex-wrap items-center gap-3.5 sm:gap-4">
-              <Link href="/appointment">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  icon={<Calendar className="w-5 h-5" />}
-                  className="w-full sm:w-auto text-base"
-                >
-                  Book Appointment
-                </Button>
+              <Link href="/#appointment">
+                <button className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-sm sm:text-base shadow-lg shadow-blue-500/25 transition-all duration-200">
+                  <Calendar className="w-4 h-4 text-blue-200" />
+                  <span>Book Appointment</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </button>
               </Link>
+
               <a href={`tel:${clinicData.phoneRaw}`}>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  icon={<Phone className="w-4 h-4 text-teal-700" />}
-                  className="w-full sm:w-auto text-base"
-                >
-                  Call Clinic
-                </Button>
-              </a>
-              <a
-                href={clinicData.directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-800 hover:text-teal-900 underline-offset-4 hover:underline px-2 py-2"
-              >
-                <Navigation className="w-4 h-4 text-teal-700" />
-                <span>Get Directions</span>
+                <button className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-bold text-sm sm:text-base shadow-sm hover:border-slate-400 active:scale-95 transition-all duration-200">
+                  <Phone className="w-4 h-4 text-rose-500" />
+                  <span>Emergency: {clinicData.emergencyNumber}</span>
+                </button>
               </a>
             </div>
 
-            {/* Trust checkmarks */}
-            <div className="pt-4 border-t border-slate-200/70 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-slate-600">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                <span>Individualized Therapy</span>
+            {/* Trust Badges */}
+            <div className="pt-4 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-slate-600 font-medium">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-3.5 h-3.5 text-teal-700" />
+                </div>
+                <span>Certified Specialists</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                <span>Evidence-Informed Care</span>
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+                  <HeartPulse className="w-3.5 h-3.5 text-blue-700" />
+                </div>
+                <span>Modern ICU &amp; OT</span>
               </div>
-              <div className="flex items-center gap-1.5 col-span-2 sm:col-span-1">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                <span>Comfortable Clinic</span>
+              <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
+                <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                  <Clock className="w-3.5 h-3.5 text-emerald-700" />
+                </div>
+                <span>24/7 Rapid Care</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Visual Graphic with Floating Trust Cards */}
-          <div className="lg:col-span-5 relative flex justify-center">
-            <div className="relative w-full max-w-md">
-              {/* Main Visual Card */}
-              <div className="relative rounded-3xl bg-gradient-to-br from-teal-800 via-teal-900 to-slate-900 p-8 text-white shadow-2xl overflow-hidden border border-teal-700/40">
-                {/* Decorative background vectors */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 rounded-full blur-2xl" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/10 rounded-full blur-xl" />
+          {/* Right Column: Doctor Portrait with Mint Backdrop & Grid matching Image 1 */}
+          <div className="lg:col-span-5 relative flex justify-center items-center">
+            {/* Background Medical Subtle Grid pattern visible in Image 1 */}
+            <div
+              className="absolute -top-6 -right-6 w-72 h-72 opacity-25 pointer-events-none -z-10"
+              style={{
+                backgroundImage: `radial-gradient(#0284c7 1.5px, transparent 1.5px)`,
+                backgroundSize: "20px 20px",
+              }}
+            />
 
-                <div className="relative z-10 space-y-6">
-                  <div className="flex items-center justify-between border-b border-teal-700/50 pb-4">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-teal-700/80 flex items-center justify-center">
-                        <HeartHandshake className="w-5 h-5 text-teal-200" />
-                      </div>
-                      <div>
-                        <p className="text-xs uppercase tracking-wider text-teal-300 font-semibold">
-                          Physiotherapy Center
-                        </p>
-                        <p className="text-sm font-bold text-white">
-                          {clinicData.clinicName}
-                        </p>
-                      </div>
-                    </div>
-                    <span className="px-2.5 py-1 rounded-full bg-teal-500/20 text-teal-200 text-xs border border-teal-400/30">
-                      Allahabad
-                    </span>
-                  </div>
+            {/* Pastel Mint/Teal Circular Backdrop Shape matching Image 1 */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[380px] h-[300px] sm:h-[380px] rounded-full bg-gradient-to-tr from-emerald-100/70 via-teal-50 to-blue-50/50 -z-10 border border-emerald-200/50 shadow-inner" />
 
-                  {/* Physiotherapy Graphic Representation */}
-                  <div className="py-4 text-center space-y-3">
-                    <div className="mx-auto w-24 h-24 rounded-2xl bg-teal-800/80 border border-teal-600/40 flex items-center justify-center shadow-inner">
-                      <svg
-                        className="w-14 h-14 text-teal-300"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.75"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        {/* Biomechanics / human movement rehabilitation icon */}
-                        <circle cx="12" cy="5" r="2.5" />
-                        <path d="m9 20 3-6 3 6" />
-                        <path d="m6 12 6-3 6 3" />
-                        <path d="M12 9v5" />
-                      </svg>
-                    </div>
-                    <h3 className="text-lg font-bold text-white">
-                      Comprehensive Rehabilitation
-                    </h3>
-                    <p className="text-xs text-teal-200/90 leading-relaxed max-w-xs mx-auto">
-                      Dedicated assessment, guided exercise therapy, and functional mobility recovery tailored to your diagnosis.
-                    </p>
-                  </div>
+            {/* Subtle decorative ring */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[420px] h-[340px] sm:h-[420px] rounded-full border border-dashed border-teal-200/60 pointer-events-none -z-10" />
 
-                  <div className="bg-teal-950/60 rounded-xl p-3 border border-teal-700/40 flex items-center justify-between text-xs">
-                    <span className="text-teal-300 font-medium">Consulting Specialist:</span>
-                    <span className="text-white font-semibold">{clinicData.doctorName}</span>
-                  </div>
+            {/* Doctor Image Container */}
+            <div className="relative z-10 w-full max-w-[340px] sm:max-w-[400px]">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white border-4 border-white/80 aspect-[4/5]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800"
+                  alt="Senior Physician at Samriddhi Hospital"
+                  className="w-full h-full object-cover object-top"
+                />
+
+                {/* Floating Status Dot visible on top right in Image 1 */}
+                <div className="absolute top-4 right-4 w-7 h-7 rounded-full bg-emerald-500/90 text-white flex items-center justify-center shadow-lg border-2 border-white backdrop-blur-sm">
+                  <div className="w-2.5 h-2.5 rounded-full bg-white animate-ping" />
                 </div>
-              </div>
 
-              {/* Floating Trust Card 1: Google Rating */}
-              <div className="absolute -top-4 -left-4 sm:-left-6 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-slate-200 flex items-center gap-3 animate-in fade-in slide-in-from-left-4 duration-500">
-                <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 border border-amber-200">
-                  <Star className="w-5 h-5 fill-amber-400 text-amber-500" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-extrabold text-slate-900 text-sm">
-                      {clinicData.rating}
-                    </span>
-                    <div className="flex text-amber-400 text-xs">
-                      {"★★★★★"}
+                {/* Overlay Badge at Bottom of Doctor Image */}
+                <div className="absolute bottom-3 inset-x-3 bg-white/95 backdrop-blur-md rounded-2xl p-3.5 shadow-lg border border-slate-100 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0">
+                      <UserCheck className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-900 leading-tight">
+                        Dr. Aryan Sharma
+                      </p>
+                      <p className="text-[10px] text-teal-700 font-semibold">
+                        Chief Medical Consultant
+                      </p>
                     </div>
                   </div>
-                  <p className="text-[11px] text-slate-500 font-medium">
-                    {clinicData.reviewCount} {clinicData.ratingSource}
-                  </p>
-                </div>
-              </div>
-
-              {/* Floating Trust Card 2: Personalized Care */}
-              <div className="absolute -bottom-4 -right-2 sm:-right-6 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-slate-200 flex items-center gap-3 animate-in fade-in slide-in-from-right-4 duration-500">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 border border-teal-200">
-                  <Sparkles className="w-5 h-5 text-teal-700" />
-                </div>
-                <div>
-                  <p className="font-bold text-slate-900 text-xs sm:text-sm">
-                    Personalized Care
-                  </p>
-                  <p className="text-[11px] text-slate-500">
-                    One-to-one physiotherapy sessions
-                  </p>
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
+                    On Duty
+                  </span>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Floating Bottom Showcase Cards matching Image 1 */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          {/* Card 1: Meet Chief Doctors / Specialists */}
+          <div className="group relative bg-white rounded-3xl p-5 sm:p-6 shadow-md hover:shadow-xl border border-slate-200/90 transition-all duration-300 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shrink-0 shadow-sm border border-slate-200">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300"
+                  alt="Doctor at Samriddhi Hospital"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="space-y-1">
+                <span className="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold tracking-wide">
+                  Top Medical Faculty
+                </span>
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                  Meet Our Chief Specialists
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 line-clamp-1">
+                  Expert consultants across Cardiology, Orthopedics, Pediatrics &amp; Surgery.
+                </p>
+              </div>
+            </div>
+
+            <Link
+              href="/#doctors"
+              className="w-10 h-10 rounded-full bg-teal-50 hover:bg-teal-100 text-teal-700 flex items-center justify-center shrink-0 border border-teal-200/80 transition-colors"
+              title="View Doctors"
+            >
+              <Plus className="w-5 h-5" />
+            </Link>
+          </div>
+
+          {/* Card 2: 24/7 Emergency & ICU Care */}
+          <div className="group relative bg-white rounded-3xl p-5 sm:p-6 shadow-md hover:shadow-xl border border-slate-200/90 transition-all duration-300 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-rose-50 to-rose-100 flex items-center justify-center shrink-0 text-rose-600 border border-rose-200/60 shadow-sm">
+                <HeartPulse className="w-8 h-8" />
+              </div>
+              <div className="space-y-1">
+                <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold tracking-wide">
+                  24 Hours Open
+                </span>
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  24/7 Emergency &amp; Trauma ICU
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 line-clamp-1">
+                  Rapid resuscitation bays, ventilators &amp; ambulance hotline: 9305257103
+                </p>
+              </div>
+            </div>
+
+            <a
+              href={`tel:${clinicData.phoneRaw}`}
+              className="w-10 h-10 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-200/80 transition-colors"
+              title="Call Emergency"
+            >
+              <Plus className="w-5 h-5" />
+            </a>
           </div>
         </div>
       </div>

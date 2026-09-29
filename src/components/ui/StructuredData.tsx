@@ -4,23 +4,26 @@ import { clinicData } from "@/data/clinic";
 export function StructuredData() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
+    "@type": "Hospital",
     name: clinicData.clinicName,
-    alternateName: "PHYSIO 360 CARE - Dr. Sonali Baghel PT",
-    description: `PHYSIO 360 CARE by Dr. Sonali Baghel, PT provides personalized physiotherapy and rehabilitation care in ${clinicData.city}, ${clinicData.state}.`,
-    url: "https://physio360care.com",
-    telephone: clinicData.phone,
+    alternateName: "Samriddhi Hospital Prayagraj",
+    description: `Samriddhi Hospital is a leading multispeciality hospital providing 24/7 emergency care, cardiology, orthopedics, surgery, maternity and diagnostics in ${clinicData.city}, ${clinicData.state}.`,
+    url: "https://samriddhihospital.com",
+    telephone: clinicData.phoneRaw,
     medicalSpecialty: [
-      "Physiotherapy",
-      "Physical Therapy",
-      "Musculoskeletal Rehabilitation",
-      "Orthopedic Physical Therapy",
-      "Sports Rehabilitation"
+      "EmergencyMedicine",
+      "Cardiovascular",
+      "Orthopedic",
+      "Gynecologic",
+      "Pediatric",
+      "Surgical",
     ],
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Allahabad",
-      addressRegion: "Uttar Pradesh",
+      streetAddress: "Medical Enclave, Civil Lines",
+      addressLocality: clinicData.city,
+      addressRegion: clinicData.state,
+      postalCode: "211001",
       addressCountry: "IN",
     },
     geo: {
@@ -34,11 +37,6 @@ export function StructuredData() {
       reviewCount: clinicData.reviewCount,
       bestRating: 5,
       worstRating: 1,
-    },
-    founder: {
-      "@type": "Person",
-      name: clinicData.doctorName,
-      jobTitle: clinicData.designation,
     },
     priceRange: "$$",
   };
